@@ -22,17 +22,27 @@ public class CategoryEntity {
 	
 	@Column(name = "booksList")
 	private List<BookEntity> listOfBooks = new ArrayList<>();
-	
-	
-	public String getCategoryName() {
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
 		return name;
 	}
-	public void setCategoryName(String categoryName) {
-		this.name = categoryName;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
 	public List<BookEntity> getListOfBooks() {
 		return listOfBooks;
 	}
+
 	public void setListOfBooks(List<BookEntity> listOfBooks) {
 		this.listOfBooks = listOfBooks;
 	}
