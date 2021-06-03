@@ -7,6 +7,5 @@ import pl.krystian.entities.CategoryEntity;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
-	CategoryEntity findById(long id);
 	CategoryEntity findByName(String name);
 }

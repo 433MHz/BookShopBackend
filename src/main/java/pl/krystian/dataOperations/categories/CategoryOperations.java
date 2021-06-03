@@ -1,6 +1,7 @@
 package pl.krystian.dataOperations.categories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -59,20 +60,21 @@ public class CategoryOperations {
 	}
 
 	public CategoryEntity getCategoryById(Long id) {
-		CategoryEntity category = categoryRepo.getById(id);
+		Optional<CategoryEntity> category = categoryRepo.findById(id);
 		
-		if(category != null) {
-			return category;
-		}
-		else {
+		try {
+			return category.get();
+			
+		} catch (Exception e) {
 			return null;
 		}
 		
 	}
 	
 	public CategoryEntity getCategoryByName(String name) {
+				
 		CategoryEntity category = categoryRepo.findByName(name);
-		
+				
 		if(category != null) {
 			return category;
 		}
