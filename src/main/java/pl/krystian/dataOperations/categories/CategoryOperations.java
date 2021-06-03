@@ -21,11 +21,11 @@ public class CategoryOperations {
 		
 	
 //	Get all CategoryEntity from database, convert it to Category class and then return
-	public List<CategoryEntity> getAllCategories() {
+	public List<CategoryEntity> getAll() {
 		return categoryRepo.findAll();
 	}
 
-	public String editCategory(CategoryEntity category) {
+	public String edit(CategoryEntity category) {
 		
 		if(categoryRepo.existsById(category.getId())) {
 			categoryRepo.save(category);
@@ -36,7 +36,7 @@ public class CategoryOperations {
 		}
 	}
 	
-	public String deleteCategory(CategoryEntity category) {
+	public String delete(CategoryEntity category) {
 		
 		if(categoryRepo.existsById(category.getId())) {
 			categoryRepo.deleteById(category.getId());
@@ -47,7 +47,7 @@ public class CategoryOperations {
 		}
 	}
 
-	public String addCategory(CategoryEntity category) {
+	public String add(CategoryEntity category) {
 		
 		if(categoryRepo.findByName(category.getName()) != null) {
 			return "There is category with this name already";
@@ -59,7 +59,7 @@ public class CategoryOperations {
 		}
 	}
 
-	public CategoryEntity getCategoryById(Long id) {
+	public CategoryEntity getById(Long id) {
 		Optional<CategoryEntity> category = categoryRepo.findById(id);
 		
 		try {
@@ -71,7 +71,7 @@ public class CategoryOperations {
 		
 	}
 	
-	public CategoryEntity getCategoryByName(String name) {
+	public CategoryEntity getByName(String name) {
 				
 		CategoryEntity category = categoryRepo.findByName(name);
 				
