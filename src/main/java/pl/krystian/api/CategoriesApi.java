@@ -23,32 +23,32 @@ public class CategoriesApi {
 	CategoryOperations operation;
 
 	@PostMapping("/add")
-	public String addCategory(@RequestBody CategoryEntity category) {
+	public String add(@RequestBody CategoryEntity category) {
 		return operation.add(category);
 	}
 	
 	@PatchMapping("/update")
-	public String editCategory(@RequestBody CategoryEntity category) {
+	public String edit(@RequestBody CategoryEntity category) {
 		return operation.edit(category);
 	}
 	
 	@DeleteMapping("/delete")
-	public String deleteCategory(@RequestBody CategoryEntity category) {
+	public String delete(@RequestBody BookCategoryIdHolder category) {
 		return operation.delete(category);
 	}
 	
 	@GetMapping("/getAll")
-	public List<CategoryEntity> getAllCategories() {
+	public List<CategoryEntity> getAll() {
 		return operation.getAll();
 	}
 	
 	@GetMapping("/getById")
-	public CategoryEntity getCategoryById(@RequestBody Long id) {		
+	public CategoryEntity getById(@RequestBody Long id) {		
 		return operation.getById(id);
 	}
 	
 	@GetMapping("/getByName")
-	public CategoryEntity getCategoryByName(@RequestBody String name) {
+	public CategoryEntity getByName(@RequestBody String name) {
 		return operation.getByName(name);
 	}
 }

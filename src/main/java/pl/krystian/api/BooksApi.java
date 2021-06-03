@@ -22,17 +22,23 @@ public class BooksApi {
 	BookOperations operation;
 
 	@PostMapping("/add")
-	public String addCategory(@RequestBody BookEntity book) {
+	public String add(@RequestBody BookEntity book) {
 		return operation.add(book);
 	}
 	
 	@PatchMapping("/update")
-	public String editCategory(@RequestBody BookEntity book) {
-		return operation.edit(book);
+	public String updateBook(@RequestBody BookEntity book) {
+		System.out.println(book.toString());
+		return operation.update(book);
+	}
+	
+	@PatchMapping("/updateConnections")
+	public String updateConnections(@RequestBody BookCategoryIdHolder book) {
+		return operation.editConnections(book);
 	}
 	
 	@DeleteMapping("/delete")
-	public String deleteCategory(@RequestBody BookEntity book) {
+	public String delete(@RequestBody BookCategoryIdHolder book) {
 		return operation.delete(book);
 	}
 	
