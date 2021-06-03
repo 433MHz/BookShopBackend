@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -35,7 +37,7 @@ public class BookEntity {
 	private short year;
 	
 	@ManyToOne
-	@JoinColumn(name = "categoryID" ,nullable = false)
+	@JoinColumn(name = "category_id" ,nullable = true)
 	private CategoryEntity category;
 	
 	
