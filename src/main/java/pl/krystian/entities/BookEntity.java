@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class BookEntity {
@@ -26,7 +28,8 @@ public class BookEntity {
 	@Column(name = "bookPublishmentYear")
 	private short year;
 	
-	@Column(name = "categoryID")
+	@ManyToOne
+	@JoinColumn(name = "categoryID" ,nullable = false)
 	private CategoryEntity category;
 	
 	

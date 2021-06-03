@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CategoryEntity {
@@ -20,8 +21,8 @@ public class CategoryEntity {
 	@Column(name = "categoryName")
 	private String name;
 	
-	@Column(name = "booksList")
-	private List<BookEntity> listOfBooks = new ArrayList<>();
+	@OneToMany(mappedBy = "category")
+	private List<BookEntity> listOfBooks;
 
 	public Long getId() {
 		return id;
