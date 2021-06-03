@@ -11,44 +11,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.krystian.dataOperations.categories.CategoryOperations;
-import pl.krystian.entities.CategoryEntity;
-
+import pl.krystian.dataOperations.books.BookOperations;
+import pl.krystian.entities.BookEntity;
 
 @RestController
-@RequestMapping(path = "/categories")
-public class CategoriesApi {
+@RequestMapping(path = "/books")
+public class BooksApi {
 	
 	@Autowired
-	CategoryOperations operation;
+	BookOperations operation;
 
 	@PostMapping("/add")
-	public String addCategory(@RequestBody CategoryEntity category) {
-		return operation.add(category);
+	public String addCategory(@RequestBody BookEntity book) {
+		return operation.add(book);
 	}
 	
 	@PatchMapping("/update")
-	public String editCategory(@RequestBody CategoryEntity category) {
-		return operation.edit(category);
+	public String editCategory(@RequestBody BookEntity book) {
+		return operation.edit(book);
 	}
 	
 	@DeleteMapping("/delete")
-	public String deleteCategory(@RequestBody CategoryEntity category) {
-		return operation.delete(category);
+	public String deleteCategory(@RequestBody BookEntity book) {
+		return operation.delete(book);
 	}
 	
 	@GetMapping("/getAll")
-	public List<CategoryEntity> getAllCategories() {
+	public List<BookEntity> getAllCategories() {
 		return operation.getAll();
 	}
 	
 	@GetMapping("/getById")
-	public CategoryEntity getCategoryById(@RequestBody Long id) {		
+	public BookEntity getById(@RequestBody Long id) {		
 		return operation.getById(id);
 	}
 	
-	@GetMapping("/getByName")
-	public CategoryEntity getCategoryByName(@RequestBody String name) {
-		return operation.getByName(name);
+	@GetMapping("/getByTitle")
+	public BookEntity getByName(@RequestBody String title) {
+		return operation.getByTitle(title);
 	}
+
 }
