@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import pl.krystian.api.BookCategoryIdHolder;
 import pl.krystian.entities.CategoryEntity;
-import pl.krystian.jpa.repositories.BookRepository;
 import pl.krystian.jpa.repositories.CategoryRepository;
 
 @Component
@@ -15,9 +15,6 @@ public class CategoryOperations {
 
 	@Autowired
 	private CategoryRepository categoryRepo;
-	
-	@Autowired
-	private BookRepository bookRepo;
 		
 	
 //	Get all CategoryEntity from database, convert it to Category class and then return
@@ -28,19 +25,33 @@ public class CategoryOperations {
 	public String edit(CategoryEntity category) {
 		
 		if(categoryRepo.existsById(category.getId())) {
-			categoryRepo.save(category);
-			return "Category updated";
-		}
+			
+				CategoryEntity originalEntity = categoryRepo.getById(category.getId());
+				if(category.getName() != null) {
+					originalEntity.setName(category.getName());
+				}
+					
+				try {
+					categoryRepo.save(originalEntity);
+					return "Category edited";
+				} catch (Exception e) {
+					return "Problem with database";
+				}
+			}
 		else {
 			return "There is not any category with this ID";
 		}
 	}
 	
-	public String delete(CategoryEntity category) {
+	public String delete(BookCategoryIdHolder category) {
 		
-		if(categoryRepo.existsById(category.getId())) {
-			categoryRepo.deleteById(category.getId());
-			return "Category removed";
+		if(categoryRepo.existsById(category.getCategoryID())) {
+			try {
+				categoryRepo.deleteById(category.getCategoryID());
+				return "Category removed";
+			} catch (Exception e) {
+				return "Problem with database";
+			}
 		}
 		else {
 			return "There is not any category with this ID";
@@ -54,8 +65,12 @@ public class CategoryOperations {
 		}
 		
 		else {
-			categoryRepo.save(category);
-			return "Category saved";
+			try {
+				categoryRepo.save(category);
+				return "Category saved";
+			} catch (Exception e) {
+				return "Problem with database";
+			}
 		}
 	}
 
