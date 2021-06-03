@@ -8,4 +8,5 @@ import pl.krystian.entities.BookEntity;
 @Repository
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
+	BookEntity findByTitle(String title);
 }
