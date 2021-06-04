@@ -16,10 +16,10 @@ import pl.krystian.jpa.repositories.CategoryRepository;
 public class BookOperations {
 	
 	@Autowired
-	BookRepository bookRepo;
+	private BookRepository bookRepo;
 	
 	@Autowired
-	CategoryRepository categoryRepo;
+	private CategoryRepository categoryRepo;
 
 	public List<BookEntity> getAll() {
 		return bookRepo.findAll();
@@ -33,9 +33,13 @@ public class BookOperations {
 				CategoryEntity categoryEntity = categoryRepo.getById(book.getCategoryID());
 				
 				bookEntity.setCategory(categoryEntity);
-				
-				bookRepo.save(bookEntity);
-				return "Book updated";
+								
+				try {
+					bookRepo.save(bookEntity);
+					return "Book category added";
+				}catch (Exception e) {
+					return "Unknown exception";
+				}
 			}
 			else {
 				return "There is not any category with this ID";
