@@ -18,4 +18,9 @@ public class BookCategoryIdHolder {
 	public void setCategoryID(Long categoryID) {
 		this.categoryID = categoryID;
 	}
+	public BookCategoryIdHolder(Long bookID, Long categoryID) {
+		super();
+		this.bookID = bookID;
+		this.categoryID = categoryID;
+	}
 }

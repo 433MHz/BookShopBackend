@@ -77,4 +77,28 @@ public class BookEntity {
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
+	
+	
+	
+	public BookEntity() {
+	}
+	
+	public BookEntity(Long id, String title, String authorFirstName, String authorSurname, short year,
+			CategoryEntity category) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.authorFirstName = authorFirstName;
+		this.authorSurname = authorSurname;
+		this.year = year;
+		this.category = category;
+	}
+	@Override
+	public String toString() {
+		return "BookEntity [id=" + id + ", title=" + title + ", authorFirstName=" + authorFirstName + ", authorSurname="
+				+ authorSurname + ", year=" + year + ", category=" + category + "]";
+	}
+	
+	
+	
 }

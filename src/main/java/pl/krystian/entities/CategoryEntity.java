@@ -53,4 +53,16 @@ public class CategoryEntity {
 	public void setListOfBooks(List<BookEntity> listOfBooks) {
 		this.listOfBooks = listOfBooks;
 	}
+	public CategoryEntity() {
+	}
+	public CategoryEntity(Long id, String name, List<BookEntity> listOfBooks) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.listOfBooks = listOfBooks;
+	}
+	@Override
+	public String toString() {
+		return "CategoryEntity [id=" + id + ", name=" + name + ", listOfBooks=" + listOfBooks + "]";
+	}
 }
