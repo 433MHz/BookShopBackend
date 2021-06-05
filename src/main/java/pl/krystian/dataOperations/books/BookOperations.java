@@ -87,7 +87,7 @@ public class BookOperations {
 				bookRepo.deleteById(book.getBookID());
 				return "Book removed";
 			} catch (Exception e) {
-				return "Problem with database";
+				return "Unknows Error";
 			}
 		}
 		else {
@@ -102,7 +102,7 @@ public class BookOperations {
 			return "Book saved";
 			
 		} catch (Exception e) {
-			return e.toString();
+			return "Unknown error";
 		}
 	}
 

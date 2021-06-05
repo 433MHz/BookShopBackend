@@ -3,7 +3,7 @@ package pl.krystian.dataOperations.books;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -40,7 +40,7 @@ class BookOperationsTest {
 	}
 	
 	
-//	EditConnections class tests
+//	EditConnections method tests
 	@Nested
 	@DisplayName("editConnections method test")
 	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -108,13 +108,14 @@ class BookOperationsTest {
 		}
 	}
 
-//	Update class tests
+//	Update method tests
 	@Nested
 	@DisplayName("update method test")
 	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 	class testUpdate{
 		
 		private BookEntity bookEntityFromDatabase;
+		private BookEntity bookThatThrowError;
 		
 		private String entityEditedMessage = "Entity edited";
 		private String entityWithoutID = "Entity need to have id";
@@ -157,4 +158,68 @@ class BookOperationsTest {
 		}
 		
 	}
+
+//	Delete method tests
+	@Nested
+	@DisplayName("delete method test")
+	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	class testDelete{
+		
+		String bookRemoved = "Book removed";
+		String bookNotInDatabase = "There is not any book with this ID";
+		
+		@BeforeAll
+		void beforeDeleteTests() {
+			when(bookRepo.existsById(1L)).thenReturn(true);
+			when(bookRepo.existsById(2L)).thenReturn(false);
+		}
+		
+		@Test
+		void shouldReturn_BookRemoved(){
+//			given
+			BookCategoryIdHolder bookToBeDeleted = new BookCategoryIdHolder(1L, null);
+			
+//			then
+			String resultMessage = bookOperations.delete(bookToBeDeleted);
+			
+//			when
+			assertEquals(bookRemoved, resultMessage);
+			
+		}
+		
+		
+		@Test
+		void shouldReturn_BookDontExist() {
+//			given
+			BookCategoryIdHolder bookWithoutIdInDatabase = new BookCategoryIdHolder(2L, null);
+			
+//			then
+			String resultMessage = bookOperations.delete(bookWithoutIdInDatabase);
+			
+//			when
+			assertEquals(bookNotInDatabase, resultMessage);
+		}
+	}
+	
+//	add method test
+	@Nested
+	@DisplayName("add method test")
+	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	class testAdd{
+		
+		@Test
+		void shouldReturn_BookSaved() {
+//			given
+			BookEntity book = new BookEntity();
+			
+//			then
+			String resultMessage = bookOperations.add(book);
+			
+//			when
+			assertEquals("Book saved", resultMessage);
+			
+		}
+	}
+	
 }
+
